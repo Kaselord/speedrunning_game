@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://bewfm7bli2b0h"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_bko7f"]
+[ext_resource type="Texture2D" uid="uid://mc7655505f7h" path="res://textures/player/head.png" id="2_5gmwf"]
+[ext_resource type="Texture2D" uid="uid://dqa06l6djxupx" path="res://textures/player/hand.png" id="3_vtusf"]
+[ext_resource type="Texture2D" uid="uid://dv7dwrgbn7t1a" path="res://textures/player/body.png" id="4_rcy5t"]
+[ext_resource type="Texture2D" uid="uid://c6se5bjwyxwai" path="res://textures/player/foot.png" id="5_kumo0"]
+
+[sub_resource type="Curve" id="Curve_e3cpl"]
+_data = [Vector2(0, 1), 0.0, -0.896007, 0, 1, Vector2(1, 0.103993), -0.896007, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hba5"]
+size = Vector2(8, 26)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_bko7f")
+
+[node name="visuals" type="Node2D" parent="."]
+
+[node name="trail" type="Line2D" parent="visuals"]
+position = Vector2(0, -14)
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 15.0
+width_curve = SubResource("Curve_e3cpl")
+default_color = Color(0.972549, 0.972549, 0.760784, 1)
+
+[node name="body" type="Sprite2D" parent="visuals"]
+texture = ExtResource("4_rcy5t")
+
+[node name="foot_right" type="Sprite2D" parent="visuals"]
+position = Vector2(2, 6)
+texture = ExtResource("5_kumo0")
+offset = Vector2(1, 4)
+
+[node name="foot_left" type="Sprite2D" parent="visuals"]
+position = Vector2(-2, 6)
+texture = ExtResource("5_kumo0")
+offset = Vector2(-1, 4)
+flip_h = true
+
+[node name="head" type="Sprite2D" parent="visuals"]
+position = Vector2(0, -14)
+texture = ExtResource("2_5gmwf")
+
+[node name="hand_right" type="Sprite2D" parent="visuals"]
+position = Vector2(5, -2)
+texture = ExtResource("3_vtusf")
+offset = Vector2(7, 0)
+
+[node name="hand_left" type="Sprite2D" parent="visuals"]
+position = Vector2(-5, -2)
+texture = ExtResource("3_vtusf")
+offset = Vector2(-7, 0)
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_8hba5")
