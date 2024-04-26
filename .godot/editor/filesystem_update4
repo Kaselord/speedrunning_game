@@ -4,3 +4,6 @@ res://scenes/level_basis.tscn
 res://scripts/level_basis.gd
 res://scenes/flag.tscn
 res://scripts/flag.gd
+res://scenes/levels/000.tscn
+res://scripts/camera.gd
+res://scenes/autoloads/globals.tscn

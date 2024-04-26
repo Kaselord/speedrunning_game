@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://f6dp0t6aea5"]
+[gd_scene load_steps=9 format=3 uid="uid://f6dp0t6aea5"]
 
 [ext_resource type="Texture2D" uid="uid://bcy5r0wwnu14e" path="res://textures/tiles/fancy.png" id="1_12fln"]
 [ext_resource type="Script" path="res://scripts/level_basis.gd" id="1_j74ho"]
 [ext_resource type="PackedScene" uid="uid://bewfm7bli2b0h" path="res://scenes/player.tscn" id="2_ka3kr"]
 [ext_resource type="PackedScene" uid="uid://ddeukp13j1ov4" path="res://scenes/flag.tscn" id="4_g3g3e"]
+[ext_resource type="PackedScene" uid="uid://cck30il5om0rs" path="res://scenes/camera.tscn" id="5_mbow4"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="6_bg7qj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_472vm"]
 texture = ExtResource("1_12fln")
@@ -492,7 +494,10 @@ script = ExtResource("1_j74ho")
 tile_set = SubResource("TileSet_w8jlr")
 format = 2
 
+[node name="flag" parent="." instance=ExtResource("4_g3g3e")]
+
 [node name="player" parent="." instance=ExtResource("2_ka3kr")]
 
-[node name="flag" parent="." instance=ExtResource("4_g3g3e")]
-position = Vector2(198, 203)
+[node name="camera" parent="." instance=ExtResource("5_mbow4")]
+script = ExtResource("6_bg7qj")
+follow_path = NodePath("../player")
