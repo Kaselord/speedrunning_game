@@ -19,6 +19,10 @@ var has_done_jump_input : int = 0
 var dash_bounces : int = 0
 
 
+func _ready():
+	add_to_group("player")
+
+
 func _process(_delta):
 	x_input = Input.get_axis("left", "right")
 	if Input.is_action_just_pressed("jump"):
@@ -63,47 +67,48 @@ func _physics_process(delta):
 		velocity = dash_dir.normalized() * MOVE_SPEED * 5 * Vector2(1, 0.5)
 		is_dashing -= 1
 	
-	move_and_slide()
-	
-	# legs
-	footrot += velocity.x * 0.15 * delta
-	if abs(velocity.x) < MOVE_SPEED * 0.1:
-		$visuals/foot_right.rotation_degrees = lerp($visuals/foot_right.rotation_degrees, 0.0, 0.2)
-		$visuals/foot_left.rotation_degrees = lerp($visuals/foot_left.rotation_degrees, 0.0, 0.2)
-	else:
-		$visuals/foot_right.rotation_degrees = sin(footrot) * 40
-		$visuals/foot_left.rotation_degrees = sin(footrot + PI) * 40
-	
-	# arms
-	var velocity_adder = -velocity.y * 0.2
-	$visuals/hand_right.rotation_degrees = 10 + lerp($visuals/hand_right.rotation_degrees, velocity_adder, 0.3)
-	$visuals/hand_left.rotation_degrees = -10 + lerp($visuals/hand_left.rotation_degrees, -velocity_adder, 0.3)
-	
-	# trail movement
-	var trail = $visuals/trail
-	var prev_point : Vector2
-	for point_idx in trail.get_point_count():
-		if point_idx == 0:
-			trail.set_point_position(point_idx, Vector2(0, 0))
-			prev_point = Vector2(0, 0)
+	if Globals.should_be_running && Globals.time_until_start <= 0:
+		move_and_slide()
+		
+		# legs
+		footrot += velocity.x * 0.15 * delta
+		if abs(velocity.x) < MOVE_SPEED * 0.1:
+			$visuals/foot_right.rotation_degrees = lerp($visuals/foot_right.rotation_degrees, 0.0, 0.2)
+			$visuals/foot_left.rotation_degrees = lerp($visuals/foot_left.rotation_degrees, 0.0, 0.2)
 		else:
-			trail.points[point_idx] += (prev_pos - position)
-			trail.points[point_idx] = lerp(trail.points[point_idx], prev_point, 0.4) + Vector2(0, sin(float(point_idx) * 0.4 + time * 12) * velocity.x * 0.001)
-		prev_point = trail.points[point_idx]
-	
-	if x_input_control < 1.0:
-		x_input_control += 0.05
-	
-	if lingering_dash_time > 0:
-		lingering_dash_time -= 1
-	
-	if has_been_on_floor > 0:
-		has_been_on_floor -= 1
-	
-	if has_done_jump_input > 0:
-		has_done_jump_input -= 1
-	
-	time += delta
+			$visuals/foot_right.rotation_degrees = sin(footrot) * 40
+			$visuals/foot_left.rotation_degrees = sin(footrot + PI) * 40
+		
+		# arms
+		var velocity_adder = -velocity.y * 0.2
+		$visuals/hand_right.rotation_degrees = 10 + lerp($visuals/hand_right.rotation_degrees, velocity_adder, 0.3)
+		$visuals/hand_left.rotation_degrees = -10 + lerp($visuals/hand_left.rotation_degrees, -velocity_adder, 0.3)
+		
+		# trail movement
+		var trail = $visuals/trail
+		var prev_point : Vector2
+		for point_idx in trail.get_point_count():
+			if point_idx == 0:
+				trail.set_point_position(point_idx, Vector2(0, 0))
+				prev_point = Vector2(0, 0)
+			else:
+				trail.points[point_idx] += (prev_pos - position)
+				trail.points[point_idx] = lerp(trail.points[point_idx], prev_point, 0.4) + Vector2(0, sin(float(point_idx) * 0.4 + time * 12) * velocity.x * 0.001)
+			prev_point = trail.points[point_idx]
+		
+		if x_input_control < 1.0:
+			x_input_control += 0.05
+		
+		if lingering_dash_time > 0:
+			lingering_dash_time -= 1
+		
+		if has_been_on_floor > 0:
+			has_been_on_floor -= 1
+		
+		if has_done_jump_input > 0:
+			has_done_jump_input -= 1
+		
+		time += delta
 
 
 func dash():

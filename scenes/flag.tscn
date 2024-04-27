@@ -22,3 +22,5 @@ default_color = Color(0.513726, 0.705882, 0.623529, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(14, -31.5)
 shape = SubResource("RectangleShape2D_o3p4m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

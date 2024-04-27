@@ -1,9 +1,9 @@
-res://scenes/player.tscn
-res://scripts/player.gd
-res://scenes/level_basis.tscn
-res://scripts/level_basis.gd
-res://scenes/flag.tscn
-res://scripts/flag.gd
-res://scenes/levels/000.tscn
-res://scripts/camera.gd
 res://scenes/autoloads/globals.tscn
+res://scenes/player.tscn
+res://scenes/level_basis.tscn
+res://scenes/flag.tscn
+res://scenes/levels/000.tscn
+res://scripts/globals.gd
+res://scripts/level_basis.gd
+res://scripts/player.gd
+res://scripts/flag.gd
