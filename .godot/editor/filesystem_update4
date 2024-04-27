@@ -1,12 +1,7 @@
-res://scenes/levels/001.tscn
 res://scenes/player.tscn
 res://scenes/level_basis.tscn
-res://scenes/flag.tscn
-res://scenes/levels/000.tscn
-res://scenes/autoloads/globals.tscn
 res://scenes/menu.tscn
-res://scenes/level_button.tscn
-res://scenes/sawblade.tscn
-res://scripts/globals.gd
-res://scripts/menu.gd
-res://scripts/level_basis.gd
+res://scenes/levels/001.tscn
+res://scenes/jumper.tscn
+res://scripts/jumper.gd
+res://scenes/levels/000.tscn

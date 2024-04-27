@@ -36,3 +36,4 @@ icon.svg.import
 .godot/uid_cache.bin
 icon.svg.import
 *.import
+.godot/editor/editor_layout.cfg

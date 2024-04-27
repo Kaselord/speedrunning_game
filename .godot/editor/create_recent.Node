@@ -1,7 +1,8 @@
-Label
 CollisionShape2D
+StaticBody2D
 Sprite2D
 Area2D
+Label
 ColorRect
 Node2D
 AudioStreamPlayer
@@ -11,4 +12,3 @@ Node
 Camera2D
 Line2D
 TileMap
-CharacterBody2D
