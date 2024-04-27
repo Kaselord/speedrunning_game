@@ -1,6 +1,8 @@
-AudioStreamPlayer
 Label
 ColorRect
+Node2D
+AudioStreamPlayer
+AnimationPlayer
 CanvasLayer
 Node
 Camera2D
@@ -8,5 +10,4 @@ CollisionShape2D
 Line2D
 Area2D
 TileMap
-Node2D
 CharacterBody2D

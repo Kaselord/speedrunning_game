@@ -7,3 +7,7 @@ res://scripts/globals.gd
 res://scripts/level_basis.gd
 res://scripts/player.gd
 res://scripts/flag.gd
+res://scenes/menu.tscn
+res://scenes/level_button.tscn
+res://scripts/level_button.gd
+res://scripts/menu.gd

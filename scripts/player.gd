@@ -24,39 +24,40 @@ func _ready():
 
 
 func _process(_delta):
-	x_input = Input.get_axis("left", "right")
-	if Input.is_action_just_pressed("jump"):
-		has_done_jump_input = 7
-	if has_done_jump_input > 0 && has_been_on_floor > 0:
-		has_done_jump_input = 0
-		velocity.y = JUMP_POWER + dash_bounces * JUMP_POWER * 0.35
-		# dash jumping!
-		if lingering_dash_time > 0:
-			velocity.x = dash_dir.x * MOVE_SPEED * 10
-			x_input_control = 0.0
-			if dash_dir == Vector2(0, 1):
-				dash_bounces += 1
-				print(dash_bounces)
+	if Globals.should_be_running && Globals.time_until_start <= 0:
+		x_input = Input.get_axis("left", "right")
+		if Input.is_action_just_pressed("jump"):
+			has_done_jump_input = 7
+		if has_done_jump_input > 0 && has_been_on_floor > 0:
+			has_done_jump_input = 0
+			velocity.y = JUMP_POWER + dash_bounces * JUMP_POWER * 0.35
+			# dash jumping!
+			if lingering_dash_time > 0:
+				velocity.x = dash_dir.x * MOVE_SPEED * 10
+				x_input_control = 0.0
+				if dash_dir == Vector2(0, 1):
+					dash_bounces += 1
+					print(dash_bounces)
+				else:
+					dash_bounces = 0
 			else:
-				dash_bounces = 0
-		else:
-			dash_bounces = 0 
-	
-	if Input.is_action_just_released("jump") && !jump_has_been_released && velocity.y < 0:
-		jump_has_been_released = true
-		velocity.y *= 0.5
-	
-	if is_on_floor():
-		has_been_on_floor = 7
-		jump_has_been_released = false
-		can_dash = true
-	
-	var input_dir = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
-	if input_dir != Vector2(0, 0):
-		dash_dir = input_dir
-	
-	if Input.is_action_just_pressed("dash") && can_dash && lingering_dash_time <= 0:
-		dash()
+				dash_bounces = 0 
+		
+		if Input.is_action_just_released("jump") && !jump_has_been_released && velocity.y < 0:
+			jump_has_been_released = true
+			velocity.y *= 0.5
+		
+		if is_on_floor():
+			has_been_on_floor = 7
+			jump_has_been_released = false
+			can_dash = true
+		
+		var input_dir = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+		if input_dir != Vector2(0, 0):
+			dash_dir = input_dir
+		
+		if Input.is_action_just_pressed("dash") && can_dash && lingering_dash_time <= 0:
+			dash()
 
 
 func _physics_process(delta):

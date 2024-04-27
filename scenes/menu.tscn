@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4rd0tp0wo3yo"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_1p6st"]
+[ext_resource type="PackedScene" uid="uid://blrdplvf8jntg" path="res://scenes/level_button.tscn" id="1_8c1ox"]
+[ext_resource type="Texture2D" uid="uid://cyvaxv5a1nxsc" path="res://textures/interface/arrow.png" id="2_ebh7x"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_1p6st")
+
+[node name="arrow" type="Sprite2D" parent="."]
+position = Vector2(55, 235)
+texture = ExtResource("2_ebh7x")
+
+[node name="levels" type="Node2D" parent="."]
+
+[node name="level_button" parent="levels" instance=ExtResource("1_8c1ox")]
+position = Vector2(55, 176)
+to_unlock = NodePath("../level_button2")
+unlocked = true
+scene_to_load_path = "res://scenes/levels/000.tscn"
+
+[node name="level_button2" parent="levels" instance=ExtResource("1_8c1ox")]
+position = Vector2(155, 176)
+display_name = "Torture"
+level_id = "001"
+to_unlock = NodePath("../level_button3")
+
+[node name="level_button3" parent="levels" instance=ExtResource("1_8c1ox")]
+position = Vector2(255, 176)
+display_name = "Agony"
+level_id = "002"
+to_unlock = NodePath("../level_button4")
+
+[node name="level_button4" parent="levels" instance=ExtResource("1_8c1ox")]
+position = Vector2(355, 176)
+display_name = "Suffering"
+level_id = "003"
+to_unlock = NodePath("../level_button5")
+
+[node name="level_button5" parent="levels" instance=ExtResource("1_8c1ox")]
+position = Vector2(455, 176)
+display_name = "Bliss"
+level_id = "004"
