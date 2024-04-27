@@ -23,7 +23,9 @@ scene_to_load_path = "res://scenes/levels/000.tscn"
 position = Vector2(155, 176)
 display_name = "Torture"
 level_id = "001"
+gold_time = 7.0
 to_unlock = NodePath("../level_button3")
+scene_to_load_path = "res://scenes/levels/001.tscn"
 
 [node name="level_button3" parent="levels" instance=ExtResource("1_8c1ox")]
 position = Vector2(255, 176)

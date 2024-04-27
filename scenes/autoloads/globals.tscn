@@ -1,16 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://btdcesgatywm3"]
+[gd_scene load_steps=15 format=3 uid="uid://btdcesgatywm3"]
 
 [ext_resource type="Script" path="res://scripts/globals.gd" id="1_sf5ct"]
 [ext_resource type="FontFile" uid="uid://bkdup4giffeyl" path="res://resources/fonts/sandfont.ttf" id="2_mmwod"]
 [ext_resource type="AudioStream" uid="uid://b36bstfbfqovo" path="res://audio/sfx/three_two_one_go.mp3" id="3_k8chj"]
+[ext_resource type="FontFile" uid="uid://buhockuvonca8" path="res://resources/fonts/cheesefont.ttf" id="3_mhdic"]
 [ext_resource type="AudioStream" uid="uid://cara1ph31lqoc" path="res://audio/sfx/you_win.mp3" id="4_68hwq"]
 [ext_resource type="AudioStream" uid="uid://ubmnl2s62v1y" path="res://audio/sfx/times_up.mp3" id="5_nvjsy"]
 [ext_resource type="AudioStream" uid="uid://x35ixp8s7r86" path="res://audio/music/epic_beat_layer_calm.ogg" id="6_f6cn5"]
+[ext_resource type="AudioStream" uid="uid://cyaarj4v1aa2b" path="res://audio/sfx/you_are_dead.mp3" id="6_nh6os"]
 [ext_resource type="AudioStream" uid="uid://dstpxkkbbtn2s" path="res://audio/music/epic_beat_layer_intense.ogg" id="7_8axbt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qrm1p"]
 font = ExtResource("2_mmwod")
 font_color = Color(0.972549, 0.972549, 0.760784, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ttx21"]
+font = ExtResource("3_mhdic")
+font_color = Color(0.513726, 0.705882, 0.623529, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cul27"]
 font_size = 80
@@ -57,18 +63,37 @@ script = ExtResource("1_sf5ct")
 [node name="interface" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="interface"]
-offset_left = 421.0
+offset_left = 425.0
 offset_right = 512.0
-offset_bottom = 38.0
+offset_bottom = 30.0
 color = Color(0.184314, 0.282353, 0.345098, 1)
 
 [node name="timer_text" type="Label" parent="interface"]
 offset_left = 427.0
-offset_top = 3.0
 offset_right = 505.0
-offset_bottom = 26.0
+offset_bottom = 23.0
 text = "15.00"
 label_settings = SubResource("LabelSettings_qrm1p")
+
+[node name="min_time" type="Label" parent="interface"]
+offset_left = 398.0
+offset_top = 32.0
+offset_right = 512.0
+offset_bottom = 55.0
+text = "Minimum: 15.00"
+label_settings = SubResource("LabelSettings_ttx21")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="gold_time" type="Label" parent="interface"]
+offset_left = 398.0
+offset_top = 47.0
+offset_right = 512.0
+offset_bottom = 70.0
+text = "Star: 15.00"
+label_settings = SubResource("LabelSettings_ttx21")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="big_text" type="Label" parent="interface"]
 modulate = Color(1, 1, 1, 0)
@@ -89,6 +114,9 @@ stream = ExtResource("4_68hwq")
 [node name="lose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_nvjsy")
 
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_nh6os")
+
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_o3w11")
@@ -96,6 +124,7 @@ libraries = {
 
 [node name="music_calm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_f6cn5")
+volume_db = -20.0
 
 [node name="music_intense" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_8axbt")

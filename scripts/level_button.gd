@@ -14,6 +14,13 @@ func _ready():
 		unlocked = true
 		if get_node_or_null(to_unlock) != null:
 			get_node(to_unlock).unlocked = true
+		
+		if best_time < gold_time:
+			$gold.show()
+		else:
+			$gold.hide()
+	else:
+		$gold.hide()
 
 func _process(_delta):
 	if unlocked:
