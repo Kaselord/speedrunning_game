@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bewfm7bli2b0h"]
+[gd_scene load_steps=9 format=3 uid="uid://bewfm7bli2b0h"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_bko7f"]
 [ext_resource type="Texture2D" uid="uid://mc7655505f7h" path="res://textures/player/head.png" id="2_5gmwf"]
+[ext_resource type="PackedScene" uid="uid://d1hrxqr3l8b0f" path="res://scenes/particle.tscn" id="2_caupv"]
 [ext_resource type="Texture2D" uid="uid://dqa06l6djxupx" path="res://textures/player/hand.png" id="3_vtusf"]
 [ext_resource type="Texture2D" uid="uid://dv7dwrgbn7t1a" path="res://textures/player/body.png" id="4_rcy5t"]
 [ext_resource type="Texture2D" uid="uid://c6se5bjwyxwai" path="res://textures/player/foot.png" id="5_kumo0"]
@@ -15,6 +16,7 @@ size = Vector2(8, 26)
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_bko7f")
+particle_scene = ExtResource("2_caupv")
 
 [node name="visuals" type="Node2D" parent="."]
 

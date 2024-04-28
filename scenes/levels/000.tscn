@@ -18,7 +18,9 @@ offset_left = 540.0
 offset_top = 184.0
 offset_right = 689.0
 offset_bottom = 259.0
-text = "Shift, X, K to dash"
+text = "Shift, X, K to dash
+
+(8-Directional)"
 label_settings = SubResource("LabelSettings_dt47f")
 
 [node name="jump" type="Label" parent="." index="2"]

@@ -45,15 +45,21 @@ scene_to_load_path = "res://scenes/levels/001.tscn"
 position = Vector2(255, 176)
 display_name = "Agony"
 level_id = "002"
+gold_time = 5.0
 to_unlock = NodePath("../level_button4")
+scene_to_load_path = "res://scenes/levels/002.tscn"
 
 [node name="level_button4" parent="levels" instance=ExtResource("1_8c1ox")]
 position = Vector2(355, 176)
 display_name = "Suffering"
 level_id = "003"
+gold_time = 8.0
 to_unlock = NodePath("../level_button5")
+scene_to_load_path = "res://scenes/levels/003.tscn"
 
 [node name="level_button5" parent="levels" instance=ExtResource("1_8c1ox")]
 position = Vector2(455, 176)
 display_name = "Bliss"
 level_id = "004"
+gold_time = 9.0
+scene_to_load_path = "res://scenes/levels/004.tscn"

@@ -17,6 +17,7 @@ var lingering_dash_time : int = 0
 var has_been_on_floor : int = 0
 var has_done_jump_input : int = 0
 var dash_bounces : int = 0
+@export var particle_scene : PackedScene
 
 
 func _ready():
@@ -28,7 +29,10 @@ func _process(_delta):
 		x_input = Input.get_axis("left", "right")
 		if Input.is_action_just_pressed("jump"):
 			has_done_jump_input = 7
+		# jump
 		if has_done_jump_input > 0 && has_been_on_floor > 0:
+			jump_particles()
+			SoundManager.new_sound("res://audio/sfx/jump.mp3", randf_range(0.9, 1.2), 5.0)
 			has_done_jump_input = 0
 			velocity.y = JUMP_POWER + dash_bounces * JUMP_POWER * 0.35
 			# dash jumping!
@@ -113,7 +117,26 @@ func _physics_process(delta):
 
 
 func dash():
+	SoundManager.new_sound("res://audio/sfx/dash.mp3", randf_range(0.8, 1.0))
 	can_dash = false
 	is_dashing = 4
 	x_input_control = 0.0
 	lingering_dash_time = 15
+	for i in range(12):
+		var particle = particle_scene.instantiate()
+		var angle_value : float = (float(i) / 12.0) * TAU
+		particle.lifetime = 0.5
+		particle.position = position + Vector2(sin(angle_value), cos(angle_value)) * 16
+		particle.starting_velocity = Vector2(sin(angle_value), cos(angle_value)) * 16
+		get_tree().current_scene.call_deferred("add_child", particle)
+
+func jump_particles():
+	for i in range(8):
+		var particle = particle_scene.instantiate()
+		var angle_value : float = (float(i - 4) / 8.0) * PI
+		particle.lifetime = randf_range(0.3, 0.8)
+		particle.starting_scale = 0.6
+		particle.end_scale = 1.1
+		particle.position = position + Vector2(0, 12)
+		particle.starting_velocity = Vector2(sin(angle_value), cos(angle_value)) * randf_range(24, 128) * Vector2(1, -0.75)
+		get_tree().current_scene.call_deferred("add_child", particle)

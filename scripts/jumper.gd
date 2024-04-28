@@ -6,12 +6,9 @@ func _physics_process(_delta):
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
-		# pointing to sides
-		if abs(transform.x.x) > abs(transform.x.y):
-			body.velocity.x = -body.velocity.x * 3
-			body.velocity.y *= 1.5
-		else: # pointing up/down
-			body.velocity.y = -body.velocity.y * 2
-			body.velocity.x *= 2
+		body.velocity = transform.x * 500.0
+		body.can_dash = true
+		body.is_dashing = 0
+		body.jump_has_been_released = true
 		$Sprite2D.scale = Vector2(1.2, 1.4)
 		body.x_input_control = 0.1

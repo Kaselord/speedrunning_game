@@ -49,6 +49,7 @@ func _physics_process(delta):
 	if should_be_running:
 		if time > min_time:
 			$lose.play()
+			SoundManager.new_sound("res://audio/sfx/out_of_time.ogg")
 			text_popup("TIME'S UP!")
 			time_until_menu = 2.0
 			should_be_running = false
@@ -66,6 +67,7 @@ func _physics_process(delta):
 		
 		if has_won:
 			$win.play()
+			SoundManager.new_sound("res://audio/sfx/reached_flag.ogg")
 			time_until_menu = 2.0
 			text_popup("YOU WIN!")
 			has_won = false
@@ -92,6 +94,14 @@ func _physics_process(delta):
 		$music_intense.play(0.0)
 
 
+func _process(_delta):
+	if Input.is_action_just_pressed("fullscreen"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
 func text_popup(text_to_display : String):
 	$interface/big_text.scale = Vector2(0, 0)
 	$interface/big_text.modulate.a = 1.0
@@ -100,6 +110,7 @@ func text_popup(text_to_display : String):
 
 
 func death():
+	SoundManager.new_sound("res://audio/sfx/died.ogg")
 	text_popup("ur ded")
 	$death.play()
 	dead = true

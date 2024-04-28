@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://djaxek03d3154"]
 
 [ext_resource type="Script" path="res://scripts/jumper.gd" id="1_onfmp"]
-[ext_resource type="Texture2D" uid="uid://25uedsofwy0j" path="res://textures/level/jumper.png" id="1_v7rh4"]
+[ext_resource type="Texture2D" uid="uid://cvpp704kauxuc" path="res://textures/level/jumper.png" id="1_v7rh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqoyc"]
 size = Vector2(52, 43)
