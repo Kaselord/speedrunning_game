@@ -118,6 +118,7 @@ func _physics_process(delta):
 
 func dash():
 	SoundManager.new_sound("res://audio/sfx/dash.mp3", randf_range(0.8, 1.0))
+	jump_has_been_released = true
 	can_dash = false
 	is_dashing = 4
 	x_input_control = 0.0
